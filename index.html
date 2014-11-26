@@ -18,45 +18,10 @@
     			var GistsOf = new Gh3.Gists(new Gh3.User("namulsan"));
 
     			GistsOf.fetch({page:1, per_page:15}, "next", function (err, res) {
-				if(err) {
-			      		throw "outch ..."
-				}
-
-      				console.log(GistsOf.getGists());
-
 				GistsOf.eachGist(function (gist) {
 					gistsList.append('<li>'+gist.description+" "+gist.id);
 				});
 			});
-
-    			var AllGistsOf = new Gh3.Gists(new Gh3.User("namulsan"));
-    			AllGistsOf.fetch({page:1, per_page:500}, null, function (err, res) {
-				if(err) {
-					throw "outch ..."
-				}
-				console.log("Filtered gists : ", AllGistsOf.filter(function (gist) {
-					return gist.comments > 0;
-				}));
-    			});
-
-    var oneGist = new Gh3.Gist({id:"b7e3ecc20f2f34fd7b78"});
-
-    oneGist.fetchContents(function (err, res) {
-
-      if(err) {
-        throw "outch ..."
-      }
-
-      console.log("oneGist : ", oneGist);
-      console.log("Files : ", oneGist.files);
-
-      console.log(oneGist.getFileByName("use.thing.js").content);
-
-      oneGist.eachFile(function (file) {
-        console.log(file.filename, file.language, file.type, file.size);
-      });
-    });
-  </script>
-</body>
-
+  		</script>
+	</body>
 </html>
