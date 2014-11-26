@@ -1,50 +1,43 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>gh3</title>    
-</head>
-<body>
-	<h1></h1>
-	<h2></h2>
-	<ul></ul>
+	<head>
+	    <meta charset="utf-8">
+	    <title>gh3</title>    
+	</head>
+	<body>
+		<h1></h1>
+		<h2></h2>
+		<ul></ul>
 
-  <script src="jQuery.js"></script>
-  <script src="underscore.js"></script>
-  <script src="gh3.js"></script>
-  <script>
+  		<script src="jQuery.js"></script>
+		<script src="underscore.js"></script>
+		<script src="gh3.js"></script>
+		
+		<script>
+    			var gistsList = $("ul");
+    			var GistsOf = new Gh3.Gists(new Gh3.User("namulsan"));
 
-    var gistsList = $("ul");
+    			GistsOf.fetch({page:1, per_page:15}, "next", function (err, res) {
+				if(err) {
+			      		throw "outch ..."
+				}
 
-    var GistsOfK33g = new Gh3.Gists(new Gh3.User("namulsan"));
+      				console.log(GistsOf.getGists());
 
-    GistsOfK33g.fetch({page:1, per_page:15}, "next", function (err, res) {
+				GistsOf.eachGist(function (gist) {
+					gistsList.append('<li>'+gist.description+" "+gist.id);
+				});
+			});
 
-      if(err) {
-        throw "outch ..."
-      }
-
-      console.log(GistsOfK33g.getGists());
-
-      GistsOfK33g.eachGist(function (gist) {
-        //console.log(gist.description, gist.id);
-        gistsList.append('<li>'+gist.description+" "+gist.id);
-      });
-    });
-
-    var AllGistsOfK33g = new Gh3.Gists(new Gh3.User("namulsan"));
-
-    AllGistsOfK33g.fetch({page:1, per_page:500}, null, function (err, res) {
-
-      if(err) {
-        throw "outch ..."
-      }
-      //console.log("All gists : ", AllGistsOfK33g.getGists());
-      console.log("Filtered gists : ", AllGistsOfK33g.filter(function (gist) {
-        return gist.comments > 0;
-      }));
-
-    });
+    			var AllGistsOf = new Gh3.Gists(new Gh3.User("namulsan"));
+    			AllGistsOf.fetch({page:1, per_page:500}, null, function (err, res) {
+				if(err) {
+					throw "outch ..."
+				}
+				console.log("Filtered gists : ", AllGistsOf.filter(function (gist) {
+					return gist.comments > 0;
+				}));
+    			});
 
     var oneGist = new Gh3.Gist({id:"2287018"});
 
