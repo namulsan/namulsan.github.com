@@ -39,7 +39,7 @@
 				}));
     			});
 
-    var oneGist = new Gh3.Gist({id:"2287018"});
+    var oneGist = new Gh3.Gist({id:"b7e3ecc20f2f34fd7b78"});
 
     oneGist.fetchContents(function (err, res) {
 
@@ -56,31 +56,6 @@
         console.log(file.filename, file.language, file.type, file.size);
       });
     });
-
-
-    var anOtherGist = new Gh3.Gist({id:"1096826"});
-
-    anOtherGist.fetchContents(function (err, res) {
-
-      if(err) {
-        throw "outch ..."
-      }
-
-      console.log("anOtherGist : ", anOtherGist);
-      console.log("Files : ", anOtherGist.files);
-
-      anOtherGist.fetchComments(function (err, res) {
-
-        if(err) {
-          throw "outch ..."
-        }
-
-        anOtherGist.eachComment(function (comment) {
-          console.log(comment.body, "By ", comment.user.login);
-        });
-      });
-    });
-
   </script>
 </body>
 
