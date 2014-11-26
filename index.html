@@ -16,7 +16,7 @@
 
     var gistsList = $("ul");
 
-    var GistsOfK33g = new Gh3.Gists(new Gh3.User("k33g"));
+    var GistsOfK33g = new Gh3.Gists(new Gh3.User("namulsan"));
 
     GistsOfK33g.fetch({page:1, per_page:15}, "next", function (err, res) {
 
@@ -32,7 +32,7 @@
       });
     });
 
-    var AllGistsOfK33g = new Gh3.Gists(new Gh3.User("k33g"));
+    var AllGistsOfK33g = new Gh3.Gists(new Gh3.User("namulsan"));
 
     AllGistsOfK33g.fetch({page:1, per_page:500}, null, function (err, res) {
 
